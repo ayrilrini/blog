@@ -19,7 +19,10 @@ jobs:
         node-version: '22.14.0'  # 使用 Node.js 22.14.0
         
     - name: Install dependencies
-      run: npm install
+      run: |
+        npm install
+        npm install --save hexo-cli
+        npm install hexo-theme-fluid
     
     - name: Generate static files
       run: npx hexo generate
