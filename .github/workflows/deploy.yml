@@ -12,31 +12,18 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-      with:
-        submodules: true  # 如果使用子模块（如主题）
         
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '22.14.0'  # 使用 Node.js 22.14.0
-        cache: 'npm'
         
     - name: Install dependencies
-      run: |
-        npm install -g hexo-cli
-        npm install --save hexo-theme-fluid
-        npm install
-
-    - name: Create symlink for theme
-      run: |
-        ln -sf node_modules/hexo-theme-fluid themes/fluid
-
-        
+      run: npm install
+    
     - name: Generate static files
-      run: |
-        hexo clean
-        hexo generate
-        
+      run: npx hexo generate
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
